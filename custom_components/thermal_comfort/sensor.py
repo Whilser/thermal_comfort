@@ -37,10 +37,10 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 })
 
 SENSOR_TYPES = {
-    'absolutehumidity': [DEVICE_CLASS_HUMIDITY, 'Absolute Humidity', 'g/m³'],
-    'heatindex': [DEVICE_CLASS_TEMPERATURE, 'Heat Index', '°C'],
-    'dewpoint': [DEVICE_CLASS_TEMPERATURE, 'Dew Point', '°C'],
-    'perception': [None, 'Thermal Perception', None],
+    'absolutehumidity': [DEVICE_CLASS_HUMIDITY, 'Абсолютная влажность', 'г/м³'],
+    'heatindex': [DEVICE_CLASS_TEMPERATURE, 'Температурный индекс', '°C'],
+    'dewpoint': [DEVICE_CLASS_TEMPERATURE, 'Точка росы', '°C'],
+    'perception': [None, 'Ощущается как', None],
 }
 
 async def async_setup_platform(hass, config, async_add_entities,
@@ -173,20 +173,20 @@ class SensorThermalComfort(Entity):
         """https://en.wikipedia.org/wiki/Dew_point"""
         dewPoint = self.computeDewPoint(temperature, humidity)
         if dewPoint < 10:
-            return "A bit dry for some"
+            return "Сухо"
         elif dewPoint < 13:
-            return "Very comfortable"
+            return "Комфортно"
         elif dewPoint < 16:
-            return "Comfortable"
+            return "Достаточно комфортно"
         elif dewPoint < 18:
-            return "OK for most, but all perceive the humidity at upper edge"
+            return "Высокая влажность"
         elif dewPoint < 21:
-            return "Somewhat uncomfortable for most people at upper edge"
+            return "Не комфортно, высокая влажность"
         elif dewPoint < 24:
-            return "Very humid, quite uncomfortable"
+            return "Очень влажно"
         elif dewPoint < 26:
-            return "Extremely uncomfortable, oppressive"
-        return "Severely high, even deadly for asthma related illnesses"
+            return "Экстремально высокая влажность"
+        return "Опасный уровень влажности"
 
     def computeAbsoluteHumidity(self, temperature, humidity):
         """https://carnotcycle.wordpress.com/2012/08/04/how-to-convert-relative-humidity-to-absolute-humidity/"""
