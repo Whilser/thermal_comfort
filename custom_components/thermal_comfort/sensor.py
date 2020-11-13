@@ -83,7 +83,7 @@ class SensorThermalComfort(Entity):
         """Initialize the sensor."""
         self.hass = hass
         self.entity_id = async_generate_entity_id(ENTITY_ID_FORMAT, "{}_{}".format(device_id, sensor_type), hass=hass)
-        self._name = "{} {}".format(friendly_name, SENSOR_TYPES[sensor_type][1])
+        self._name = "{}".format(SENSOR_TYPES[sensor_type][1])
         self._unit_of_measurement = SENSOR_TYPES[sensor_type][2]
         self._state = None
         self._device_state_attributes = {}
