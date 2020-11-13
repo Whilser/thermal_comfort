@@ -38,7 +38,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 
 SENSOR_TYPES = {
     'absolutehumidity': [DEVICE_CLASS_HUMIDITY, 'Абсолютная влажность', 'г/м³'],
-    'heatindex': [DEVICE_CLASS_TEMPERATURE, 'Температурный индекс', '°C'],
+    'heatindex': [DEVICE_CLASS_TEMPERATURE, 'Ощущаемая температура', '°C'],
     'dewpoint': [DEVICE_CLASS_TEMPERATURE, 'Точка росы', '°C'],
     'perception': [None, 'Ощущается как', None],
 }
